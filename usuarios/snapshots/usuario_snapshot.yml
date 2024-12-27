@@ -1,0 +1,11 @@
+version: 2
+
+snapshots:
+  - name: usuario_snapshot
+    config:
+      database: postgres
+      schema: snapshots
+      unique_key: id
+      strategy: check
+      check_cols:
+      - acao_realizada

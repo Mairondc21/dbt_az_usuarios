@@ -1,0 +1,12 @@
+usuarios:
+  outputs:
+    dev:
+      dbname: "{{ env_var('DB_NAME_PROD') }}"
+      host: "{{ env_var('DB_HOST_PROD') }}"
+      pass: "{{ env_var('DB_PASS_PROD') }}"
+      port: "{{ env_var('DB_PORT_PROD') | as_number }}"
+      schema: "{{ env_var('DB_SCHEMA_PROD') }}"
+      threads: "{{ env_var('DB_THREADS_PROD') | as_number }}"
+      type: postgres
+      user: "{{ env_var('DB_USER_PROD') }}"
+  target: dev

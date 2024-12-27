@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "dbt-az-usuarios"
+version = "0.1.0"
+description = ""
+authors = ["Mairondc21 <duartemairon@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+dbt-postgres = "^1.9.0"
+
+
+[tool.poetry.group.dev.dependencies]
+sqlfluff = "^3.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
