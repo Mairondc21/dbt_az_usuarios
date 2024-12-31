@@ -33,14 +33,14 @@ seeds:
 models:
   usuarios:
     raw:
-    +schema: raw
-    +materialized: "view"
+      +schema: raw
+      +materialized: "view"
     staging:
       +schema: staging
       +materialized: "view"
     intermediate:
-      +schema: staging
+      +schema: intermediate
       +materialized: "view"
-    mart:
-      +schema: staging
+    marts:
+      +schema: marts
       +materialized: "table"
