@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dbt-az-usuarios"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Mairondc21 <duartemairon@gmail.com>"]
 readme = "README.md"
