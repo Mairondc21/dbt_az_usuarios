@@ -35,3 +35,12 @@ models:
     raw:
     +schema: raw
     +materialized: "view"
+    staging:
+      +schema: staging
+      +materialized: "view"
+    intermediate:
+      +schema: staging
+      +materialized: "view"
+    mart:
+      +schema: staging
+      +materialized: "table"
