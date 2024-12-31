@@ -12,6 +12,7 @@ dbt-postgres = "^1.9.0"
 
 [tool.poetry.group.dev.dependencies]
 sqlfluff = "^3.3.0"
+sqlfluff-templater-dbt = "^3.3.0"
 
 [build-system]
 requires = ["poetry-core"]
