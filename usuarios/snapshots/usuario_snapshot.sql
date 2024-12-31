@@ -3,7 +3,7 @@
 {{
     config(
         target_schema='snapshots',
-        target_database='postgres',
+        target_database='az_table',
         unique_key='id',
         strategy='check',
         check_cols=['acao_realizada']
