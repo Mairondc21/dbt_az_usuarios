@@ -14,10 +14,34 @@ WITH source AS (
     INNER JOIN {{ ref('int_dim_navegador') }} ng ON ng.DESC_NAVEGADOR = dl.navegador
     INNER JOIN {{ ref('int_dim_acao') }} ac ON ac.DESC_ACAO = dl.acao_realizada
 
-    ORDER BY id ASC
+    ORDER BY dl.id ASC
+),
+filtered_source AS (
+    SELECT
+        *,
+        coluna_ativa_de::timestamp AS coluna_ativa_de_tratada,
+        coluna_ativa_ate::timestamp AS coluna_ativa_ate_tratada
+    FROM
+        source
+),
+transform_date AS (
+    SELECT
+        *,
+        EXTRACT(
+            MINUTES 
+            FROM coluna_ativa_ate_tratada - coluna_ativa_de_tratada
+        ) AS DIF_COL
+    FROM
+        filtered_source
 )
 
 SELECT
-    *
+    SK_DIM_USUARIOS,
+    SK_DIM_SISTEMAS,
+    SK_DIM_NAVEGADOR,
+    SK_DIM_ACAO,
+    coluna_ativa_de,
+    coluna_ativa_ate,
+    DIF_COL
 FROM
-    source
+    transform_date
