@@ -11,21 +11,23 @@ WITH source AS (
     FROM
         {{ source('snapshots','usuario_snapshot') }}
 ),
+
 tranform_string AS (
     SELECT
         *,
         CASE
             WHEN sistema_origem = 'Sitemas de compras' THEN 'Sistema de Compras'
-            ELSE sistema_origem 
+            ELSE sistema_origem
         END AS sistema_origem_tratado
     FROM
         source
 ),
+
 transform_date AS (
     SELECT
         *,
         to_char(dbt_valid_from, 'YYYY-MM-DD HH24:MI:SS') AS coluna_ativa_de,
-        to_char(dbt_valid_TO, 'YYYY-MM-DD HH24:MI:SS') AS coluna_ativa_ate
+        to_char(dbt_valid_to, 'YYYY-MM-DD HH24:MI:SS') AS coluna_ativa_ate
     FROM
         tranform_string
 )
@@ -39,5 +41,5 @@ SELECT
     acao_realizada,
     coluna_ativa_de,
     coluna_ativa_ate
-FROM 
+FROM
     transform_date

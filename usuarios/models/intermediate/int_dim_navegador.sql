@@ -1,18 +1,19 @@
 WITH source AS (
-    SELECT DISTINCT
-        navegador AS DESC_NAVEGADOR
+    SELECT DISTINCT navegador AS desc_navegador
     FROM
         {{ ref('stg_acessos') }}
 ),
+
 increment_id AS (
     SELECT
-        ROW_NUMBER() OVER(ORDER BY DESC_NAVEGADOR) AS SK_DIM,
-        DESC_NAVEGADOR
+        desc_navegador,
+        ROW_NUMBER() OVER (
+            ORDER BY desc_navegador
+        ) AS sk_dim
     FROM
         source
 )
-SELECT
-    *
+
+SELECT *
 FROM
     increment_id
-    

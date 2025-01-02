@@ -1,21 +1,30 @@
 WITH source AS (
     SELECT
-        ROW_NUMBER() OVER (ORDER BY dl.id) AS FT_SK,
-        us.sk_dim AS SK_DIM_USUARIOS,
-        st.sk_dim AS SK_DIM_SISTEMAS,
-        ng.sk_dim AS SK_DIM_NAVEGADOR,
-        ac.sk_dim AS SK_DIM_ACAO
+        us.sk_dim AS sk_dim_usuarios,
+        st.sk_dim AS sk_dim_sistemas,
+        ng.sk_dim AS sk_dim_navegador,
+        ac.sk_dim AS sk_dim_acao,
+        ROW_NUMBER() OVER (
+            ORDER BY dl.id
+        ) AS ft_sk
     FROM
-        {{ ref('stg_acessos') }} dl
-    INNER JOIN {{ ref('int_dim_usuarios') }} us ON us.COD_USUARIO = dl.id_usuario
-    INNER JOIN {{ ref('int_dim_sistemas') }} st ON st.DESC_SISTEMAS = dl.sistema_origem_tratado
-    INNER JOIN {{ ref('int_dim_navegador') }} ng ON ng.DESC_NAVEGADOR = dl.navegador
-    INNER JOIN {{ ref('int_dim_acao') }} ac ON ac.DESC_ACAO = dl.acao_realizada
+        {{ ref('stg_acessos') }} AS dl
+    INNER JOIN
+        {{ ref('int_dim_usuarios') }} AS us
+        ON dl.id_usuario = us.cod_usuario
+    INNER JOIN
+        {{ ref('int_dim_sistemas') }} AS st
+        ON dl.sistema_origem_tratado = st.desc_sistemas
+    INNER JOIN
+        {{ ref('int_dim_navegador') }} AS ng
+        ON dl.navegador = ng.desc_navegador
+    INNER JOIN
+        {{ ref('int_dim_acao') }} AS ac
+        ON dl.acao_realizada = ac.desc_acao
 
-    ORDER BY id ASC
+    ORDER BY dl.id ASC
 )
 
-SELECT
-    *
+SELECT *
 FROM
     source

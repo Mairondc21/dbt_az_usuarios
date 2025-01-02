@@ -1,9 +1,9 @@
 WITH source AS (
     SELECT
-        'total' AS TOTAL,  
-        COUNT(ft_sk) AS TOTAL_LEGADO,
-        ROUND(AVG(dif_col),2) AS MEDIA
-    FROM {{ ref('int_ft_acessos_legado')}}
+        'total' AS total,
+        COUNT(ft_sk) AS total_legado,
+        ROUND(AVG(dif_col), 2) AS media
+    FROM {{ ref('int_ft_acessos_legado') }}
 )
 
 

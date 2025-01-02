@@ -1,21 +1,24 @@
 WITH source AS (
     SELECT DISTINCT
-        id_usuario AS COD_USUARIO,
-        nome_usuario AS DESC_USUARIO
+        id_usuario AS cod_usuario,
+        nome_usuario AS desc_usuario
     FROM
         {{ ref('stg_acessos') }}
 ),
-increment_id AS(
+
+increment_id AS (
     SELECT
         *,
-        ROW_NUMBER() OVER(ORDER BY COD_USUARIO) AS SK_DIM
+        ROW_NUMBER() OVER (
+            ORDER BY cod_usuario
+        ) AS sk_dim
     FROM
         source
 )
 
-SELECT 
-    SK_DIM,
-    COD_USUARIO,
-    DESC_USUARIO
-FROM 
+SELECT
+    sk_dim,
+    cod_usuario,
+    desc_usuario
+FROM
     increment_id

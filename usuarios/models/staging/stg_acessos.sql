@@ -11,23 +11,24 @@ WITH source AS (
         {{ source('snapshots','usuario_snapshot') }}
     WHERE dbt_valid_to IS NULL
 ),
+
 tranform_string AS (
     SELECT
         *,
         CASE
             WHEN sistema_origem = 'Sitemas de compras' THEN 'Sistema de Compras'
-            ELSE sistema_origem 
+            ELSE sistema_origem
         END AS sistema_origem_tratado
     FROM
         source
 )
 
-SELECT 
+SELECT
     id,
     id_usuario,
     nome_usuario,
     sistema_origem_tratado,
     navegador,
     acao_realizada
-FROM 
+FROM
     tranform_string

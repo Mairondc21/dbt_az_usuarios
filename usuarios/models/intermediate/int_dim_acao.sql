@@ -1,18 +1,19 @@
 WITH source AS (
-    SELECT DISTINCT
-        acao_realizada AS DESC_ACAO
+    SELECT DISTINCT acao_realizada AS desc_acao
     FROM
         {{ ref('stg_acessos') }}
 ),
+
 increment_id AS (
     SELECT
-        ROW_NUMBER() OVER(ORDER BY DESC_ACAO) AS SK_DIM,
-        DESC_ACAO
+        desc_acao,
+        ROW_NUMBER() OVER (
+            ORDER BY desc_acao
+        ) AS sk_dim
     FROM
         source
 )
-SELECT
-    *
+
+SELECT *
 FROM
     increment_id
-    
