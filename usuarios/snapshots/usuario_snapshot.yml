@@ -3,7 +3,7 @@ version: 2
 snapshots:
   - name: usuario_snapshot
     config:
-      database: az_table
+      database: postgres_user
       schema: snapshots
       unique_key: id
       strategy: check
