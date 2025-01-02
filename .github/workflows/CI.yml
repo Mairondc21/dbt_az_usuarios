@@ -31,6 +31,9 @@ jobs:
 
       - name: Instala as dependências
         run: poetry install
+      
+      - name: ativando o ambiente
+        run: poetry shell
 
       - name: Load Environment Variables
         env:
