@@ -9,7 +9,7 @@ WITH source AS (
         dbt_valid_from,
         dbt_valid_to
     FROM
-        {{ ref('usuario_snapshot') }}
+        {{ source('snapshots','usuario_snapshot') }}
 ),
 tranform_string AS (
     SELECT
