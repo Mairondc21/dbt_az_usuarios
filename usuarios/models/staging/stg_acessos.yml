@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_acessos
+    description: "Tabela de acessos contendo apenas registros válidos e atualizados"
+    config:
+      tags: ['stg','ac']
+    columns:
+      - name: id
+        description: "Chave única e sequencial da tabela"
+        tests:
+          - not_null
+          - unique
+      - name: id_usuario
+        description: "Nome do login do usuário"
+        tests:
+          - not_null
+      - name: nome_usuario
+        description: "Nome real do usuário"
+        tests:
+          - not_null
+      - name: sistema_origem_tratado
+        description: "Nome do sistema com as palavras tratadas"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["Sistema de Compras", "Sistema de Estoque", "Gestão de RH", "Sistema de Vendas", "Sistema de Logística", "Sistema Financeiro", "Sistema de Suporte"]
+              quote: true
+      - name: navegador
+        description: "Nome do navegador usado pelos usuários"
+        tests:
+          - not_null
+      - name: acao_realizada
+        description: "Tipo de ação que o usuário fez no sistema"
+        tests:
+          - accepted_values:
+              values: ["Consulta", "Login", "Atualização", "Cadastro", "Logout"]
+              quote: true

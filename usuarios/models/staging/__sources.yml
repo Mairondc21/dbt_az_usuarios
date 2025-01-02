@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: snapshots
+    database: az_table
+    schema: snapshots
+    description: "Fonte de dados bruta do Sistema aplicando conceitos de slowly changing dimension "
+    tables:
+      - name: usuario_snapshot
+        description: "Tabela com dados de acesso dos usuarios extraidos do sistema"

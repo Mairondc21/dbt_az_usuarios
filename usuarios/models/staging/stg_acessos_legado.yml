@@ -1,0 +1,72 @@
+version: 2
+
+models:
+  - name: stg_acessos_legado
+    description: "Tabela de acessos contendo todos os registros do sistema ativos e inativos"
+    config:
+      tags: ['stg','ac_ld']
+    columns:
+      - name: id
+        description: "Chave única e sequencial da tabela"
+        tests:
+          - not_null
+      - name: id_usuario
+        description: "Nome do login do usuário"
+        tests:
+          - not_null
+      - name: nome_usuario
+        description: "Nome real do usuário"
+        tests:
+          - not_null
+      - name: sistema_origem_tratado
+        description: "Nome do sistema com as palavras tratadas"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["Sistema de Compras", "Sistema de Estoque", "Gestão de RH", "Sistema de Vendas", "Sistema de Logística", "Sistema Financeiro", "Sistema de Suporte"]
+              quote: true
+      - name: navegador
+        description: "Nome do navegador usado pelos usuários"
+        tests:
+          - not_null
+      - name: acao_realizada
+        description: "Tipo de ação que o usuário fez no sistema"
+        tests:
+          - accepted_values:
+              values: ["Consulta", "Login", "Atualização", "Cadastro", "Logout"]
+              quote: true
+      - name: coluna_ativa_de
+        description: "Coluna de timestamp de quando o usuário fez alguma ação no sistema"
+        tests:
+          - not_null
+      - name: coluna_ativa_ate
+        description: "Coluna de timestamp de quando o usuário fez alguma ação no sistema -> quando for null = usuário ativo"
+
+unit_tests:
+  - name: test_verificando_formato_da_data
+    description: "Checando o formato que está o timestamp"
+    model: stg_acessos_legado
+    given:
+      - input: source('snapshots', 'usuario_snapshot')
+        rows:
+          - id: 999
+            id_usuario: "user0000"
+            nome_usuario: "teste teste"
+            sistema_origem: "Sistemas de Compras"
+            navegador: "Edge"
+            acao_realizada: "Login"
+            created_at: "2024-10-21 10:08:20"
+            dbt_scd_id: "8877dddaas"
+            dbt_updated_at: "2024-12-30 19:57:32.831027"
+            dbt_valid_from: "2024-12-30 19:57:30.831027"
+            dbt_valid_to: "2024-12-30 21:39:48.767398"
+    expect:
+      rows:
+        - id: 999
+          id_usuario: "user0000"
+          nome_usuario: "teste teste"
+          sistema_origem_tratado: "Sistemas de Compras"
+          navegador: "Edge"
+          acao_realizada: "Login"
+          coluna_ativa_de: "2024-12-30 19:57:30"
+          coluna_ativa_ate: "2024-12-30 21:39:48"

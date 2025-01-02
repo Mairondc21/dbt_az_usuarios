@@ -8,7 +8,7 @@ WITH source AS (
         acao_realizada,
         dbt_valid_to AS coluna_ativa_ate
     FROM
-        {{ ref('usuario_snapshot') }}
+        {{ source('snapshots','usuario_snapshot') }}
     WHERE dbt_valid_to IS NULL
 ),
 tranform_string AS (
