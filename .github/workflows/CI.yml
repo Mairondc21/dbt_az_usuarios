@@ -1,10 +1,6 @@
 name: CI Pipeline for dbt
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
+on: pull_request
 
 jobs:
   dbt-ci:
