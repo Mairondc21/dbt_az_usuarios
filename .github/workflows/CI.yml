@@ -54,4 +54,4 @@ jobs:
           echo "DB_THREADS_PROD=${{ secrets.DB_THREADS_PROD }}" >> $GITHUB_ENV
 
       - name: Conferindo a conexão com o banco
-        run: dbt debug
+        run: poetry run dbt debug
