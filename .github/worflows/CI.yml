@@ -52,5 +52,5 @@ jobs:
            echo "DB_SCHEMA_PROD=${{ secrets.DB_SCHEMA_PROD }}" >> $GITHUB_ENV
            echo "DB_SCHEMA_PROD=${{ secrets.DB_THREADS_PROD }}" >> $GITHUB_ENV
 
-        - name: conferindo a conexao com o banco
+        - name: conferindo a conexao com o banco 
           run: dbt debug
