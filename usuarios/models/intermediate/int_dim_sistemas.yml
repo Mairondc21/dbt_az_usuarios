@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: int_dim_sistemas
+    description: "Dimensao que descreve todos os sistemas"
+    config:
+      tags: ["int","dim_sistemas"]
+    columns:
+      - name: sk_dim
+        description: "ID unico e sequencial da tabela"
+        tests:
+          - not_null
+            unique

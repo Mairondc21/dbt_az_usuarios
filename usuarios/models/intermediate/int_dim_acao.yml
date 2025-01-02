@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: int_dim_acao
+    description: "Dimensao que descreve todos as acoes que podem ser feitas no sistema"
+    config:
+      tags: ["int","dim_acao"]
+    columns:
+      - name: sk_dim
+        description: "ID unico e sequencial da tabela"
+        tests:
+          - not_null
+            unique

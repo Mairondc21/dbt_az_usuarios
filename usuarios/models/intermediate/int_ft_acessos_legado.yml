@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: int_ft_acessos_legado
+    description: "Tabela fato que contem as relacoes das dimensoes -> com dados legado"
+    config:
+      tags: ["int","ft_acessos_lg"]
+    columns:
+      - name: ft_sk
+        description: "ID unico e sequencial da tabela"
+        tests:
+          - not_null
+            unique
+      - name: sk_dim_usuarios
+        description: "Coluna com base na int_dim_usuarios"
+        tests:
+          - not_null
+      - name: sk_dim_sistemas
+        description: "Coluna com base na int_dim_sistemas"
+        tests:
+          - not_null
+      - name: sk_dim_navegador
+        description: "Coluna com base na int_dim_navegador"
+        tests:
+          - not_null
+      - name: sk_dim_acao
+        description: "Coluna com base na int_dim_acao"
+        tests:
+          - not_null
+      - name: coluna_ativa_de
+        description: "Mostra em formato timestamp quando o usuario ficou ativo"
+        tests:
+          - not_null
+      - name: coluna_ativa_ate
+        description: "Mostra em formato timestamp quando o usuario ficou inativo"
+      - name: dif_col
+        description: "Metrica que mostra por quanto tempo o usuario ficou ativo"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: " >= 0"
+      

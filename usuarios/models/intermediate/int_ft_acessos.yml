@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: int_ft_acessos
+    description: "Tabela fato que contem as relacoes das dimensoes"
+    config:
+      tags: ["int","ft_acessos"]
+    columns:
+      - name: ft_sk
+        description: "ID unico e sequencial da tabela"
+        tests:
+          - not_null
+            unique
+      - name: sk_dim_usuarios
+        description: "Coluna com base na int_dim_usuarios"
+        tests:
+          - not_null
+      - name: sk_dim_sistemas
+        description: "Coluna com base na int_dim_sistemas"
+        tests:
+          - not_null
+      - name: sk_dim_navegador
+        description: "Coluna com base na int_dim_navegador"
+        tests:
+          - not_null
+      - name: sk_dim_acao
+        description: "Coluna com base na int_dim_acao"
+        tests:
+          - not_null

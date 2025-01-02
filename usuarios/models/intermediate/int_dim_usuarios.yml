@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: int_dim_usuarios
+    description: "Dimensao que descreve todos os usuarios do sistema"
+    config:
+      tags: ["int","dim_usuarios"]
+    columns:
+      - name: sk_dim
+        description: "ID unico e sequencial da tabela"
+        tests:
+          - not_null
+            unique

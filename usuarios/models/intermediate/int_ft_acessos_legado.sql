@@ -10,7 +10,7 @@ WITH source AS (
     FROM
         {{ ref('stg_acessos_legado') }} dl
     INNER JOIN {{ ref('int_dim_usuarios') }} us ON us.COD_USUARIO = dl.id_usuario
-    INNER JOIN {{ ref('int_dim_sistemas') }} st ON st.DESC_SISTEMAS = dl.sistema_origem
+    INNER JOIN {{ ref('int_dim_sistemas') }} st ON st.DESC_SISTEMAS = dl.sistema_origem_tratado
     INNER JOIN {{ ref('int_dim_navegador') }} ng ON ng.DESC_NAVEGADOR = dl.navegador
     INNER JOIN {{ ref('int_dim_acao') }} ac ON ac.DESC_ACAO = dl.acao_realizada
 
@@ -36,6 +36,7 @@ transform_date AS (
 )
 
 SELECT
+    FT_SK,
     SK_DIM_USUARIOS,
     SK_DIM_SISTEMAS,
     SK_DIM_NAVEGADOR,

@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: int_dim_navegador
+    description: "Dimensao que descreve todos os navegadores que um usuario pode ter"
+    config:
+      tags: ["int","dim_navegador"]
+    columns:
+      - name: sk_dim
+        description: "ID unico e sequencial da tabela"
+        tests:
+          - not_null
+            unique
