@@ -1,0 +1,26 @@
+[sqlfluff]
+templater = dbt
+dialect = postgres
+runaway_limit = 10
+max_line_length = 80
+indent_unit = space
+
+[sqlfluff:templater:dbt]
+profiles_dir = .
+
+[sqlfluff:indentation]
+tab_space_size = 4
+
+[sqlfluff:layout:type:comma]
+spacing_before = touch
+line_position = trailing
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = upper
+
+
+[sqlfluff:rules:capitalisation.identifiers]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.functions]
+capitalisation_policy = upper
