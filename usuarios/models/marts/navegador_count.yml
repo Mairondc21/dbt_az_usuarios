@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: navegador_count
+    description: "Tabela que mostra o tipo de navegador que os usuarios utilizam para acessar o sistema"
+    config:
+      tags: ["mart"]
+    columns:
+      - name: contador_navegador
+        description: "Contador que mostra quantidade de pessoas fazendo aquela acao"
+        tests:
+          - not_null

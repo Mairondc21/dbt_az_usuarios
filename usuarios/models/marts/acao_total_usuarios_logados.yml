@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: acao_total_usuarios_logados
+    description: "Tabela que mostra o tipo de acao que os usuarios estao fazendo no sistema"
+    config:
+      tags: ["mart"]
+    columns:
+      - name: count_acao
+        description: "Contador que mostra quantidade de pessoas fazendo aquela acao"
+        tests:
+          - not_null

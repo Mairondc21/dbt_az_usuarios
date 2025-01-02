@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: tempo_permanecia_no_sistema
+    description: "Tabela que mostra a media de tempo que os usuarios ficam naquele sistema"
+    config:
+      tags: ["mart"]
+    columns:
+      - name: total_legado
+        description: "Contador que mostra quantidade de pessoas fazendo aquela acao"
+        tests:
+          - not_null
+      - name: media
+        description: "Media do tempo com base na dif_col -> ft_acessos_legado"
+        tests:
+          - not_null
