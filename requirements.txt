@@ -1,0 +1,6 @@
+# Astro Runtime includes the following pre-installed providers packages: https://www.astronomer.io/docs/astro/runtime-image-architecture#provider-packages
+dbt-postgres==1.9.0
+python-dotenv==1.0.1
+sqlfluff==3.3.0
+sqlfluff-templater-dbt==3.3.0
+astronomer-cosmos==1.8.1
