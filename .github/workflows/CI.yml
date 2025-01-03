@@ -52,3 +52,13 @@ jobs:
 
       - name: Conferindo a conexão com o banco
         run: poetry run dbt debug
+
+      - name: Conferindo erros de sintaxe SQL
+        run: poetry run sqlfluff lint models
+      
+      - name: formatando erros SQL
+        run: poetry run sqlfluff fix models
+        
+      - name: testando a aplicacao
+        run: poetry run dbt test
+      
