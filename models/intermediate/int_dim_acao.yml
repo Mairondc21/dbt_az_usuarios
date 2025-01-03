@@ -10,4 +10,4 @@ models:
         description: "ID unico e sequencial da tabela"
         tests:
           - not_null
-            unique
+          - unique
