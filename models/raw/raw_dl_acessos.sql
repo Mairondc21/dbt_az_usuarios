@@ -7,7 +7,7 @@ WITH sources AS (
         navegador,
         acao_realizada,
         created_at
-    FROM public.dl_acessos
+    FROM public.az_bucket
 )
 
 SELECT *
