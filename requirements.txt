@@ -4,4 +4,3 @@ python-dotenv==1.0.1
 sqlfluff==3.3.0
 sqlfluff-templater-dbt==3.3.0
 astronomer-cosmos==1.8.1
-apache-airflow-providers-airbyte
